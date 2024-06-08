@@ -1,8 +1,12 @@
+# Frontend Mentor - Order summary card solution
+
+![Design preview for the Order summary card coding challenge](./design/desktop-preview.jpg)
+
 ## Welcome! 👋
 
-![Design preview for the Loopstudios landing page coding challenge](./design/desktop-preview.jpg)
-
 Thanks for checking out this front-end coding challenge.
+
+This is a solution to the [Order summary card challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 # Frontend Mentor - Loopstudios landing page solution
 
@@ -48,13 +52,7 @@ This is a solution to the [Loopstudios landing page challenge on Frontend Mentor
 
 ### What I learned
 
-- Stop using fa-2x to enlarge these icons, use css rules instead.
-
-- On divs you need to add tabindex="0".
-
-- Be careful your mobile rules don't overide your desktop rules.
-
-- Working with the Grid was a challenge.
+- Add an extra div for the hero image
 
 ```
 

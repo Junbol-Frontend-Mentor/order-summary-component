@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
 *,
 *::before,
 *::after {
@@ -14,7 +15,7 @@ header {
 }
 
 /* .myClass {
-  @include typography("Josefin Sans", 700, 2rem, 1.5, #333);
+  @include typography("Red Hat Display", 700, 2rem, 1.5, #333); // ✅ Corrected example usage
 }
 
 .body-text {
@@ -32,398 +33,164 @@ body {
   background-color: hsl(0, 0%, 100%);
 }
 
-header {
+main {
   width: 100%;
+  flex: 1 0 auto; /* This allows the main content to grow and shrink but not shrink smaller than its content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-image: url("../assets/images/pattern-background-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.cardContainer {
+  width: 100%;
+  min-height: 45rem; /* Use min-height to accommodate varying content sizes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  background-color: hsl(225, 100%, 98%);
+}
+.cardContainer__heroImage {
+  width: 100%;
+  height: 17rem;
+  border-radius: 15px 10px 0px 0px;
+  background-image: url("../assets/images/illustration-hero.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 2rem;
   background-color: bisque;
 }
-
-.navTop_container {
-  width: 100%;
-  height: 5rem;
+.cardContainer__orderSummary {
+  width: 80%;
+  height: 6rem;
   display: flex;
   flex-direction: column;
-  position: relative;
-  background-image: url(../assets/images/mobile/image-hero.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 3;
-}
-.navTop_container__logoMenuHam_wrapper {
-  width: 100%;
-  height: 5rem;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: hsla(0, 0%, 0%, 0.6);
-}
-.navTop_container__logoTop {
-  width: 4rem;
-}
-.navTop_container__menuContainer {
-  width: 100%;
-  display: flex;
-  justify-content: right;
-}
-.navTop_container a {
-  padding: 14px 16px;
-  text-decoration: none;
-  color: hsl(0, 0%, 100%);
-}
-.navTop_container a:hover {
-  color: hsl(0, 0%, 0%);
-  background-color: #ddd;
-}
-.navTop_container__navMenu {
-  width: 90%;
-  height: 20rem;
-  top: -15rem;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 1.5rem;
-  z-index: 3;
-  position: absolute;
-  transition: transform 0.7s ease;
-}
-.navTop_container__navMenu--visible {
-  transform: translateY(20rem);
-}
-.navTop_container ul {
-  width: 100%;
-  height: 20rem;
-  color: hsl(0, 0%, 100%);
-  list-style: none;
-  display: block;
-}
-.navTop_container li {
-  width: 100%;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 2;
-  color: hsl(0, 0%, 100%);
-  border: 1px solid hsl(0, 0%, 100%);
-  background-color: hsla(0, 0%, 0%, 0.6);
-  transition: position 4s ease;
-}
-.navTop_container__hamburgerClassIcon {
-  margin-top: 0.7rem;
-  width: 3rem;
-  height: 3rem;
-  display: inline-block;
-  justify-content: center;
-  z-index: 11;
-  cursor: pointer;
-}
-.navTop_container .bar1,
-.navTop_container .bar2,
-.navTop_container .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: hsl(0, 0%, 100%);
-  margin: 6px auto;
-  transition: 0.4s;
-}
-.navTop_container .change .bar1 {
-  transform: translate(0, 11px) rotate(-45deg);
-}
-.navTop_container .change .bar2 {
-  opacity: 0;
-}
-.navTop_container .change .bar3 {
-  transform: translate(0, -11px) rotate(45deg);
-}
-
-h1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  line-height: 1.5;
-  color: hsl(0, 0%, 100%);
-}
-
-main {
-  flex: 1 0 auto;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  z-index: 1;
-  position: relative;
-}
-
-.webImage {
-  width: 100%;
-  height: 20rem;
-  z-index: 2;
-  background-image: url(../assets/images/image-web-3-mobile.jpg);
-  background-size: cover;
-  background-color: blueviolet;
-}
-
-.gridTitleContainer {
-  width: 90%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 2rem;
 }
-.gridTitleContainer__gridTitle h1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 2rem;
+.cardContainer__orderSummary h1 {
+  font-family: "Red Hat Display";
+  font-weight: 700;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: hsl(245, 75%, 52%);
+}
+.cardContainer__orderSummary p {
+  font-family: "Red Hat Display";
+  font-weight: 500;
+  font-weight: 500;
+  font-size: 1rem;
   line-height: 1.5;
   color: hsl(0, 0%, 0%);
 }
-.gridTitleContainer__seeAll {
-  width: 7rem;
-  height: 100%;
-  align-items: center;
-  letter-spacing: 0.2rem;
-  padding-left: 0.5rem;
-  padding-top: 0.2rem;
+.cardContainer__paymentBtn {
+  width: 15rem;
+  height: 3rem;
+  border-radius: 7px;
+  border-style: none;
+  color: hsl(0, 0%, 100%);
+  margin-bottom: 2rem;
   cursor: pointer;
-  border: 3px solid hsl(0, 0%, 0%);
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
+  font-family: "Red Hat Display";
+  font-weight: 700;
+  font-weight: 700;
   font-size: 1rem;
   line-height: 1.5;
-  color: hsl(0, 0%, 0%);
-  transition: transform 0.7s ease;
-}
-.gridTitleContainer__seeAll:hover, .gridTitleContainer__seeAll:focus {
   color: hsl(0, 0%, 100%);
-  border-radius: 5px;
+  transition: transform 0.7s ease;
+  background-color: hsl(245, 75%, 52%);
+}
+.cardContainer__paymentBtn:hover {
+  background-color: hsl(224, 94%, 49%);
   transform: scale(1.1);
-  border: 3px solid;
 }
-
-.cardsContainer {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.creationsGridContainer {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  grid-gap: 20px;
-}
-.creationsGridContainer__card {
-  width: 100%;
-  height: 10rem;
-  color: hsl(0, 0%, 100%);
-  display: flex;
-  justify-content: left;
-  align-items: flex-end;
-  transition: transform 0.7s ease;
-  background-color: hsl(0, 0%, 0%);
-}
-.creationsGridContainer__card:hover {
-  transform: scale(1.02);
-}
-.creationsGridContainer .hide {
-  display: none;
-}
-.creationsGridContainer__cardTitle {
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: hsl(0, 0%, 100%);
-}
-.creationsGridContainer__deepEarth {
-  background-image: url(../assets/images/mobile/image-deep-earth.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__deepEarth:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__nightArcade {
-  background-image: url(../assets/images/mobile/image-night-arcade.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__nightArcade:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__soccerTeam {
-  background-image: url(../assets/images/mobile/image-soccer-team.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__soccerTeam:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__fromAbove {
-  background-image: url(../assets/images/mobile/image-from-above.jpg);
-  background-size: cover;
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__fromAbove:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__pocket {
-  background-image: url(../assets/images/mobile/image-pocket-borealis.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__pocket:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__curiosity {
-  background-image: url(../assets/images/mobile/image-curiosity.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__curiosity:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__makeIt {
-  background-image: url(../assets/images/mobile/image-fisheye.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__makeIt:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-.creationsGridContainer__grid {
-  background-image: url(../assets/images/mobile/image-grid.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-}
-.creationsGridContainer__grid:hover {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-.navBottom_container {
-  width: 100%;
-  height: 24rem;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 2rem;
-  margin-top: 2rem;
-  background-color: hsl(0, 0%, 0%);
-}
-.navBottom_container__logoPlusBottomNav {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  text-align: center;
-}
-.navBottom_container__logoBottom {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.navBottom_container__navMenuBottom {
-  width: 100%;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-}
-.navBottom_container ul {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  justify-content: space-between;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
+.cardContainer__cancelBtn {
+  width: 8rem;
+  height: 2rem;
+  border-radius: 7px;
+  border-style: none;
+  cursor: pointer;
+  font-family: "Red Hat Display";
+  font-weight: 700;
+  font-weight: 700;
   font-size: 1rem;
-  line-height: 2;
+  line-height: 1.5;
   color: hsl(0, 0%, 100%);
+  transition: transform 0.7s ease;
+  background-color: hsl(0, 94%, 41%);
 }
-.navBottom_container__socialMediaIcons_container {
-  width: 100%;
-  height: auto;
+.cardContainer__cancelBtn:hover {
+  background-color: hsl(0, 100%, 50%);
+  transform: scale(1.1);
+}
+
+.annualPlanRow {
+  width: 70%;
+  height: 6rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-right: 1rem;
-  color: white;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
 }
-.navBottom_container__socialMediaIcons {
-  width: 15rem;
-  height: 2rem;
+.annualPlanRow__annualGrp {
+  width: 10rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
-  margin-top: 1.7rem;
-  margin-bottom: 1.5rem;
-  right: 0;
 }
-.navBottom_container__link {
-  width: 30px;
-  height: 30px;
+.annualPlanRow__musicNoteSymbol {
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid white;
   border-radius: 50%;
-  color: white;
-  text-decoration: none;
-  transition: transform 0.5s ease;
+  background-color: hsl(225, 32%, 71%);
 }
-.navBottom_container__link:hover {
-  border-color: #ccc;
-  transform: scale(1.2);
+.annualPlanRow__musicNoteSymbol i {
+  color: hsl(223, 47%, 23%);
 }
-.navBottom_container__link i {
-  font-size: 1.3rem;
+.annualPlanRow__annualPlanContainer {
+  width: 6rem;
+  height: 3rem;
+  font-family: "Red Hat Display";
+  font-weight: 700;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: hsl(0, 0%, 0%);
 }
-.navBottom_container__rights {
-  margin: 0 auto;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 0.7rem;
+.annualPlanRow__changeBtn {
+  width: 6rem;
+  height: 3rem;
+  border-style: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: "Red Hat Display";
+  font-weight: 700;
+  font-weight: 700;
+  font-size: 1rem;
   line-height: 1.5;
   color: hsl(0, 0%, 100%);
+  background-color: hsl(225, 32%, 71%);
+  transition: transform 0.7s ease;
+}
+.annualPlanRow__changeBtn:hover {
+  background-color: hsl(245, 75%, 52%);
+  transform: scale(1.1);
 }
 
 .attribution {
@@ -445,183 +212,15 @@ main {
 }
 
 @media (min-width: 768px) {
-  .navTop_container__navMenu {
-    width: 30rem;
-    top: 0.5rem;
-    position: relative;
-    margin-right: 2rem;
+  main {
+    max-width: 100%;
+    background-image: url("../assets/images/pattern-background-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
   }
-  .navTop_container ul {
-    display: flex;
-    justify-content: space-between;
-  }
-  .navTop_container li {
-    border: none;
-    background-color: transparent;
-  }
-  .navTop_container__hamburgerClassIcon {
-    display: none;
-  }
-  .navTop_container__slogan {
-    width: 30rem;
-    height: 20rem;
-    margin: 6rem auto;
-    font-family: "Inter", sans-serif;
-    font-weight: 350;
-    font-size: 2.5rem;
-    line-height: 1.5;
-    color: hsl(0, 0%, 100%);
-  }
-  .navTop_container__slogan:hover {
-    width: 35rem;
-  }
-  .cardsContainer {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-  }
-  .creationsGridContainer {
-    justify-content: space-between;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .creationsGridContainer.expanded {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .creationsGridContainer.collapsed {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .creationsGridContainer__cardTitle {
-    width: 100%;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    line-height: 1;
-    color: hsl(0, 0%, 100%);
-    background-color: hsla(0, 0%, 0%, 0.6);
-    padding: 1rem;
-  }
-  .creationsGridContainer__card {
-    width: 100%;
-    min-height: 15rem;
-    max-height: 30rem;
-    color: hsl(0, 0%, 100%);
-    display: flex;
-    align-items: flex-end;
-    transition: transform 0.7s ease;
-    background-color: hsl(0, 0%, 0%);
-  }
-  .creationsGridContainer__card:hover {
-    transform: scale(1.02);
-  }
-  .creationsGridContainer__deepEarth {
-    background-image: url(../assets/images/desktop/image-deep-earth.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__nightArcade {
-    background-image: url(../assets/images/desktop/image-night-arcade.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__soccerTeam {
-    background-image: url(../assets/images/desktop/image-soccer-team.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__fromAbove {
-    background-image: url(../assets/images/desktop/image-from-above.jpg);
-    background-size: cover;
-    background-size: 80%;
-  }
-  .creationsGridContainer__pocket {
-    background-image: url(../assets/images/desktop/image-pocket-borealis.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__curiosity {
-    background-image: url(../assets/images/desktop/image-curiosity.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__makeIt {
-    background-image: url(../assets/images/desktop/image-fisheye.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .creationsGridContainer__grid {
-    background-image: url(../assets/images/desktop/image-grid.jpg);
-    background-size: cover;
-    background-size: 100%;
-  }
-  .navBottom_container {
-    width: 100%;
-    height: 8rem;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin-top: 2rem;
-    background-color: hsl(0, 0%, 0%);
-  }
-  .navBottom_container__logoPlusBottomNav {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    text-align: left;
-  }
-  .navBottom_container__logoBottom {
-    width: 100%;
-    text-align: left;
-  }
-  .navBottom_container__navMenuBottom {
-    width: 25rem;
-    height: 2.5rem;
-    display: flex;
-  }
-  .navBottom_container ul {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: space-between;
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 2;
-    color: hsl(0, 0%, 100%);
-  }
-  .navBottom_container__socialMediaIcons_container {
-    width: 15rem;
-    height: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    margin-right: 1rem;
-    color: white;
-  }
-  .navBottom_container__socialMediaIcons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0rem;
-  }
-  .navBottom_container__link {
-    width: 30px;
-    height: 30px;
-  }
-  .navBottom_container__link:hover {
-    border-color: #ccc;
-    transform: scale(1.2);
-  }
-  .navBottom_container__link i {
-    font-size: 1.3rem;
-  }
-  .navBottom_container__rights {
-    margin: 0 auto;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 0.7rem;
-    line-height: 1.5;
-    color: hsl(0, 0%, 100%);
+  .cardContainer {
+    max-width: 30rem;
+    min-height: 45rem; /* Use min-height to accommodate varying content sizes */
   }
 }
 
