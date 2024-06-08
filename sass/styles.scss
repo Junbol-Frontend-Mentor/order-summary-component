@@ -1,0 +1,740 @@
+// Importing Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+//------GENERAL SETTINGS -------------------------------
+
+// Universal reset also explicitly to all pseudo-elements
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body section,
+header {
+  padding: 0;
+  margin: 0;
+}
+
+// Define color variables
+$colors: (
+  //-------- PRIMARY ----------------------------
+  'soft-orange': hsl(35, 77%, 62%),
+  'soft-red': hsl(5, 85%, 63%),
+  //-------- NEUTRAL ----------------------------
+  'off-white': hsl(36, 100%, 99%),
+  'grayish-blue': hsl(233, 8%, 79%),
+  'dark-grayish-blue': hsl(236, 13%, 42%),
+  'very-dark-blue': hsl(240, 100%, 5%),
+  //--------STANDARD ---------------------------
+  'white': hsl(0, 0%, 100%),
+  'purple-transp': hsla(276, 77%, 7%, 0.2),
+  'grey': hsl(0, 0%, 50%),
+  'black': hsl(0, 0%, 0%),
+  'black-transp': hsla(0, 0%, 0%, 0.6),
+  'warning-red': hsl(0, 100%, 50%),
+  'green': hsl(103, 99%, 31%)
+);
+
+// Defining gradient variables separately
+$gradientOne: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+
+// Function to retrieve colors
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+//font-family: "Josefin Sans", sans-serif;
+// Typography Mixin with parameters
+@mixin typography($font-family: 'Alata', $weight, $size, $line-height, $color) {
+  font-family: 'Inter', sans-serif;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+}
+
+// Example usage
+/* .myClass {
+  @include typography("Josefin Sans", 700, 2rem, 1.5, #333);
+}
+
+.body-text {
+  @include typography("Alata", 400, 1rem, 1.5, #666);
+} */
+/* QUERY FOR MOBILE FIRST */
+html,
+body {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // This ensures that the total height is at least the height of the viewport
+  justify-content: center;
+  z-index: 0;
+  background-color: color('white');
+}
+
+header {
+  width: 100%;
+  //margin-bottom: 2rem;
+  background-color: bisque;
+}
+
+//============= NAVIGATION SECTION   ===========================
+.navTop_container {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-image: url(../assets/images/mobile/image-hero.jpg);
+  background-size: cover; // Ensures the image fits within the container
+  background-position: center; // Center the image
+  background-repeat: no-repeat; // Prevent repeating
+  z-index: 3;
+  //background-color: coral;
+
+  &__logoMenuHam_wrapper {
+    width: 100%;
+    height: 5rem; //🚩I has been added and give a height of 5 so it doesn't affect the slogan on desktop
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem; //🚩This was the solution to push the hamburger away from the right border
+    background-color: color('black-transp');
+  }
+  &__logoTop {
+    width: 4rem;
+  }
+  &__menuContainer {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    //background-color: blueviolet;
+  }
+
+  a {
+    padding: 14px 16px;
+    text-decoration: none;
+    color: color('white');
+    //background-color: darkgreen;
+    &:hover {
+      color: color('black');
+      background-color: #ddd;
+    }
+  }
+  &__navMenu {
+    width: 90%;
+    height: 20rem;
+    top: -15rem;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 1.5rem;
+    z-index: 3;
+    position: absolute;
+    transition: transform 0.7s ease;
+    //background-color: dodgerblue;
+  }
+
+  &__navMenu--visible {
+    //🚩The Magic to the dropdown menu
+    transform: translateY(20rem); // ✅ Translates the nav menu down
+  }
+  ul {
+    width: 100%;
+    height: 20rem;
+    color: color('white');
+    list-style: none;
+    display: block;
+    //background-color: forestgreen;
+  }
+
+  li {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include typography('Josefin Sans', 400, 1rem, 2, color('white'));
+    border: 1px solid color('white');
+    //position:absolute;
+    background-color: color('black-transp');
+    transition: position 4s ease;
+    //background-color: dimgray;
+    &:hover {
+      background-color: color('fuchsia');
+    }
+  }
+
+  //----------- Hamburger Icon  ---------------
+  &__hamburgerClassIcon {
+    margin-top: 0.7rem;
+    width: 3rem;
+    height: 3rem;
+    display: inline-block; //❓
+    justify-content: center;
+    z-index: 11;
+    cursor: pointer;
+    //background-color: chartreuse;
+
+    &:hover,
+    &:focus {
+      // 🚩Combine :hover and :focus
+      .bar1,
+      .bar2,
+      .bar3 {
+        //wow🚩🎊✨🎉
+        background-color: color('fuchsia');
+      }
+    }
+  }
+
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: color('white');
+    margin: 6px auto; //🚩Solution to center the bars
+    transition: 0.4s;
+  }
+
+  .change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  .change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+}
+
+//=============================================================
+
+//============= MAIN     ====================================
+
+h1 {
+  @include typography('Josefin Sans', 600, 2rem, 1.5, color('white'));
+}
+
+main {
+  flex: 1 0 auto; // This allows the main content to grow and shrink but not shrink smaller than its content and push the footer to the bottom
+  width: 100%;
+  min-height: 100vh; // Ensures full viewport height
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  z-index: 1;
+  position: relative;
+  //background-color: aqua;
+}
+.webImage {
+  width: 100%;
+  height: 20rem;//🚩I always need to add this to be able to see the image
+  z-index: 2;
+  background-image: url(../assets/images/image-web-3-mobile.jpg);
+  background-size: cover;
+  background-color: blueviolet;
+}
+
+.gridTitleContainer {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  //background-color: lightblue;
+  &__gridTitle {
+    h1 {
+      @include typography('Josefin Sans', 400, 2rem, 1.5, color('black'));
+    }
+  }
+  &__seeAll {
+    width: 7rem;
+    height: 100%;
+    //justify-content: center;
+    align-items: center;
+    letter-spacing: 0.2rem;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    cursor: pointer;
+    border: 3px solid color('black');
+    text-align: center;
+    @include typography('Josefin Sans', 500, 1rem, 1.5, color('black'));
+    transition: transform 0.7s ease;
+    //background-color: aqua;
+    &:hover,
+    &:focus {
+      color: color('white');
+      border-radius: 5px;
+      background-color: color('fuchsia');
+      transform: scale(1.1);
+      border: 3px solid color('violet');
+    }
+  }
+}
+
+.cardsContainer {
+  width: 100%;
+  margin: 0 auto;
+  //background-color: cornflowerblue;
+}
+
+// ----- Grid Container ----------------------------
+.creationsGridContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); // 🟢 Responsive columns
+  grid-gap: 20px;
+  //background-color: darkseagreen;
+
+  &__card {
+    width: 100%;
+    height: 10rem;
+    color: color('white');
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    transition: transform 0.7s ease;
+    background-color: color('black');
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .hide {
+    display: none; // ✅ Hide elements with the .hide class
+  }
+
+  &__cardTitle {
+    @include typography('Josefin Sans', 300, 1.5rem, 1, color('white'));
+  }
+
+  &__deepEarth {
+    background-image: url(../assets/images/mobile/image-deep-earth.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+  &__nightArcade {
+    background-image: url(../assets/images/mobile/image-night-arcade.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+  &__soccerTeam {
+    background-image: url(../assets/images/mobile/image-soccer-team.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  &__fromAbove {
+    background-image: url(../assets/images/mobile/image-from-above.jpg);
+    background-size: cover;
+    background-size: 80%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+  &__pocket {
+    background-image: url(../assets/images/mobile/image-pocket-borealis.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+  &__curiosity {
+    background-image: url(../assets/images/mobile/image-curiosity.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  &__makeIt {
+    background-image: url(../assets/images/mobile/image-fisheye.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  &__grid {
+    background-image: url(../assets/images/mobile/image-grid.jpg);
+    background-size: cover;
+    background-size: 100%; // Zoom out the image
+    background-position: center; // Center the image
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.navBottom_container {
+  width: 100%;
+  height: 24rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: color('black');
+  //background-color:rgb(112, 3, 112);
+  &__logoPlusBottomNav {
+    width: 100%;
+    height: auto;
+    display: flex;
+    //margin: 0 auto;
+    flex-direction: column;
+    align-items: left;
+    text-align: center;
+    //background-color:darkgray;
+  }
+  &__logoBottom {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    //background-color: goldenrod;
+  }
+
+  &__navMenuBottom {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    //background-color: darkseagreen;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: space-between;
+    @include typography('Josefin Sans', 500, 1rem, 2, color('white'));
+    //background-color: darkgreen;
+    li {
+      &:hover {
+        color: color('fuchsia');
+      }
+    }
+  }
+  &__socialMediaIcons_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 1rem;
+    color: white;
+    //background-color: darkgreen;
+  }
+  &__socialMediaIcons {
+    width: 15rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between; // White border
+    margin-top: 1.7rem;
+    margin-bottom: 1.5rem;
+    right: 0;
+    //background-color: coral;
+  }
+
+  &__link {
+    width: 30px; // Set the size of the clickable area
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white; // White border
+    border-radius: 50%; // Circular border
+    color: white; // Icon color
+    text-decoration: none; // Removes underline from links
+    transition: transform 0.5s ease;
+    &:hover {
+      color: color('light-grayish-green'); // Light grey on hover
+      border-color: #ccc; // Border color matches hover color
+      transform: scale(1.2);
+    }
+    i {
+      font-size: 1.3rem; // 🚩use this to enlarge the font awesome icons
+      &:hover {
+        color: color('fuchsia');
+      }
+    }
+  }
+
+  &__rights {
+    margin: 0 auto;
+    @include typography('Alata', 400, 0.7rem, 1.5, color('white'));
+  }
+}
+
+//------   FOOTER    ----------------
+
+.attribution {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  top: 12rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 3rem; // Keeps the footer at the bottom but only after all other content
+  color: color('grey');
+  //background-color: aqua;
+}
+.attribution a {
+  color: color('black');
+  text-decoration: none;
+}
+
+//------ MEDIA QUERY FOR DESKTOPS AND TABLETS ----------------
+
+@media (min-width: 768px) {
+  .navTop_container {
+    &__navMenu {
+      width: 30rem; // ✅ Adjust width to auto for desktop
+      top: 0.5rem; // ✅ Reset top for desktop
+      position: relative; // ✅ Override the position for desktop view
+      margin-right: 2rem;
+    }
+
+    ul {
+      display: flex; // ✅ Ensure ul uses flexbox
+      justify-content: space-between;
+    }
+
+    li {
+      border: none;
+      background-color: transparent; //✅🚩this fixed it.
+    }
+
+    &__hamburgerClassIcon {
+      display: none; // ✅ Hide the hamburger icon on desktop
+    }
+    &__slogan {
+      width: 30rem;
+      height: 20rem;
+      margin: 6rem auto; //🚩 the first value is the one pushing the slogan down
+      @include typography('Josefin Sans', 350, 2.5rem, 1.5, color('white'));
+      //background-color: darkgreen;
+      &:hover {
+        width: 35rem;
+      }
+    }
+  }
+
+  .cardsContainer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    //margin: 0 auto;
+  }
+
+  //--== Grid Container -------------------------
+  .creationsGridContainer {
+    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr); // 🟢 Create a grid with 4 columns for desktop
+
+    &.expanded {
+      // 🟢 New class for when all items are shown
+      grid-template-columns: repeat(4, 1fr); // 🟢 Maintain the 4-column layout
+      //grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); // 🟢 Responsive columns
+    }
+
+    &.collapsed {
+      // 🟢 New class for when only the first 3 items are shown
+      grid-template-columns: repeat(4, 1fr); // 🟢 Use 3 columns for 3 items
+    }
+
+    &__cardTitle {
+      width: 100%;
+      @include typography('Josefin Sans', 300, 1.5rem, 1, color('white'));
+      background-color: color('black-transp');
+      padding: 1rem;
+    }
+
+    &__card {
+      width: 100%;
+      min-height: 15rem;
+      max-height: 30rem;
+      color: color('white');
+      display: flex;
+      align-items: flex-end;
+      transition: transform 0.7s ease;
+      background-color: color('black');
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+    &__deepEarth {
+      background-image: url(../assets/images/desktop/image-deep-earth.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+    &__nightArcade {
+      background-image: url(../assets/images/desktop/image-night-arcade.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+    &__soccerTeam {
+      background-image: url(../assets/images/desktop/image-soccer-team.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+
+    &__fromAbove {
+      background-image: url(../assets/images/desktop/image-from-above.jpg);
+      background-size: cover;
+      background-size: 80%; // Zoom out the image
+    }
+    &__pocket {
+      background-image: url(../assets/images/desktop/image-pocket-borealis.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+    &__curiosity {
+      background-image: url(../assets/images/desktop/image-curiosity.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+
+    &__makeIt {
+      background-image: url(../assets/images/desktop/image-fisheye.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+
+    &__grid {
+      background-image: url(../assets/images/desktop/image-grid.jpg);
+      background-size: cover;
+      background-size: 100%; // Zoom out the image
+    }
+  }
+
+  //----------------------------------------------
+
+  .navBottom_container {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 2rem;
+    background-color: color('black');
+    &__logoPlusBottomNav {
+      width: 100%;
+      height: auto;
+      display: flex;
+      //margin: 0 auto;
+      flex-direction: column;
+      align-items: left;
+      text-align: left;
+    }
+    &__logoBottom {
+      width: 100%;
+      text-align: left;
+    }
+
+    &__navMenuBottom {
+      width: 25rem;
+      height: 2.5rem;
+      display: flex;
+    }
+    ul {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      justify-content: space-between;
+      @include typography('Josefin Sans', 500, 1rem, 2, color('white'));
+      li {
+        &:hover {
+          color: color('fuchsia');
+        }
+      }
+    }
+    &__socialMediaIcons_container {
+      width: 15rem;
+      height: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      margin-right: 1rem;
+      color: white;
+    }
+    &__socialMediaIcons {
+      display: flex;
+      justify-content: space-between; // White border
+      margin-top: 0rem;
+    }
+
+    &__link {
+      width: 30px; // Set the size of the clickable area
+      height: 30px;
+      &:hover {
+        color: color('light-grayish-green'); // Light grey on hover
+        border-color: #ccc; // Border color matches hover color
+        transform: scale(1.2);
+      }
+      i {
+        font-size: 1.3rem; // 🚩use this to enlarge the font awesome icons
+        &:hover {
+          color: color('fuchsia');
+        }
+      }
+    }
+
+    &__rights {
+      margin: 0 auto;
+      @include typography('Alata', 400, 0.7rem, 1.5, color('white'));
+    }
+  }
+}
