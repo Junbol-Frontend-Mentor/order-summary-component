@@ -79,8 +79,6 @@ body {
 
 //============= MAIN     ====================================
 
-
-
 main {
   width: 100%;
   flex: 1 0 auto; /* This allows the main content to grow and shrink but not shrink smaller than its content */
@@ -109,10 +107,11 @@ main {
   background-color: color('very-pale-blue');
 
   &__heroImage {
+    //🚩this separate div is needed to the sibling orderSummary falls underneath.
     width: 100%;
     height: 17rem;
     border-radius: 15px 10px 0px 0px; //🚩 The trick was to add a separate div with this borders corners to match the parent
-    //this separate div is needed to the sibling orderSummary falls underneath.
+
     background-image: url('../assets/images/illustration-hero.svg');
     background-repeat: no-repeat;
     background-size: cover; //🚩 with contain I managed to put the curve in the right location not with "cover"
@@ -163,7 +162,7 @@ main {
     cursor: pointer; // ✅ Ensure pointer cursor on hover
     @include typography('Red Hat Display', 700, 1rem, 1.5, color('white'));
     transition: transform 0.7s ease;
-    background-color: color( 'warning-dark-red');
+    background-color: color('warning-dark-red');
     &:hover {
       background-color: color('warning-red');
       transform: scale(1.1);
@@ -225,8 +224,6 @@ main {
       transform: scale(1.1);
     }
   }
-
-
 }
 
 //------   FOOTER    ----------------
@@ -251,8 +248,7 @@ main {
 
 //------ MEDIA QUERY FOR DESKTOPS AND TABLETS ----------------
 
- @media (min-width: 768px) {
-
+@media (min-width: 768px) {
   main {
     max-width: 100%;
     background-image: url('../assets/images/pattern-background-desktop.svg');
@@ -260,7 +256,7 @@ main {
     background-size: contain; //🚩 with contain I managed to put the curve in the right location not with "cover"
   }
   .cardContainer {
-  max-width: 30rem;
-  min-height: 45rem; /* Use min-height to accommodate varying content sizes */
+    max-width: 30rem;
+    min-height: 45rem; /* Use min-height to accommodate varying content sizes */
   }
 }
